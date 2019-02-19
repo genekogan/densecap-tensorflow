@@ -2,14 +2,15 @@
 # from __future__ import division
 # from __future__ import print_function
 
-from tokenizer.ptbtokenizer import PTBTokenizer
+#from tokenizer.ptbtokenizer import PTBTokenizer
+from .tokenizer.ptbtokenizer import PTBTokenizer
 from six.moves import xrange
 import itertools
 import numpy as np
 import pprint
 import time
 #from bleu.bleu import Bleu
-from meteor.meteor import Meteor
+from .meteor.meteor import Meteor
 #from rouge.rouge import Rouge
 #from cider.cider import Cider
 #import nltk

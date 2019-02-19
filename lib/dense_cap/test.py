@@ -149,8 +149,8 @@ def _greedy_search(embed_net, recurrent_net, forward_args, optional_args, propos
     # reshape blobs
     for k, v in forward_args.iteritems():
         if DEBUG:
-            print 'shape of %s is ' % k
-            print v.shape
+            print('shape of %s is ' % k)
+            print(v.shape)
         recurrent_net.blobs[k].reshape(*(v.shape))
 
     recurrent_net.forward(**forward_args)
@@ -346,7 +346,7 @@ def test_net(sess, net, imdb, vis=True, use_box_at=-1):
     """Test a Fast R-CNN network on an image database."""
     num_images = len(imdb.image_index)
     if DEBUG:
-        print 'number of images: %d' % num_images
+        print('number of images: %d' % num_images)
     # all detections are collected into:
     #    all_regions[image] = list of {'image_id', caption', 'location', 'location_seq'}
     all_regions = [None] * num_images

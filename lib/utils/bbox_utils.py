@@ -4,7 +4,10 @@ from collections import OrderedDict
 import json
 import numpy as np
 import pprint
-import cPickle as pickle
+try:
+	import cPickle as pickle
+except:
+	import pickle
 import string
 
 def get_bbox_coord(norm_coord, do_clip=True):
@@ -57,7 +60,7 @@ def nms(region_info, bbox_th=0.3):
   region_n = len(region_info)
   #fast computation of pairwise IoU
   #pick the bbox of last timestep of each sample
-  #print 'region_info length %d' % len(region_info)
+  #print('region_info length %d' % len(region_info))
   all_bboxes = np.array([x['location'][-1,:] for x in region_info])# nx4 matrix
   bbox_iou = get_bbox_iou_matrix(all_bboxes)
   bbox_iou_th = bbox_iou < bbox_th
@@ -66,8 +69,8 @@ def nms(region_info, bbox_th=0.3):
   for i in xrange(region_n-1):
     if keep_flag[i]:
       keep_flag[i+1:] = np.logical_and(keep_flag[i+1:], bbox_iou_th[i,i+1:])  
-  print 'sum of keep flag'
-  print keep_flag.sum()
+  print('sum of keep flag')
+  print(keep_flag.sum())
   return [region_info[i] for i in xrange(region_n) if keep_flag[i]] 
 
 def region_merge(region_info, bbox_th=0.7):

@@ -8,7 +8,7 @@
 
 __sets = {}
 
-from visual_genome import visual_genome
+from .visual_genome import visual_genome
 
 
 # Set up visual_genome_<split> using rpn mode
