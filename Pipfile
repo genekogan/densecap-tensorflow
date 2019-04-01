@@ -19,9 +19,9 @@ Cython = ">=0.19.2"
 PyYAML = ">=3.10"
 Pillow = ">=2.3.0"
 setuptools = "*"
-visual-genmoe = "*"
 visual-genome = "*"
 tokenizer = "*"
+runway-python = "*"
 
 [requires]
 python_version = "3.5"

@@ -123,10 +123,9 @@ def _get_blobs(im, rois):
     """Convert an image and RoIs within that image into network inputs."""
     blobs = {'data': None, 'rois': None}
     blobs['data'], im_scale_factors = _get_image_blob(im)
-
     # TODO: NO_RPN option, not used
-    if not cfg.TEST.HAS_RPN:
-        blobs['rois'] = _get_rois_blob(rois, im_scale_factors)
+#    if not cfg.TEST.HAS_RPN:
+#        blobs['rois'] = _get_rois_blob(rois, im_scale_factors)
     return blobs, im_scale_factors
 
 # TODO: caffe version, not used
@@ -338,7 +337,6 @@ def test_im(sess, net, im_path, vocab, pre_results, vis=True):
     if vis:
         vis_detections(im_path, im, pos_captions, pos_dets, save_path='./demo')
         results = vis_whtml(im_path, im, pos_captions, pos_dets, pre_results)
-
     return results
 
 

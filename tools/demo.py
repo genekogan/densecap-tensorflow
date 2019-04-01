@@ -69,6 +69,8 @@ def parse_args():
     return args
 
 
+
+
 if __name__ == '__main__':
     args = parse_args()
     print('------- called with args: --------')
@@ -125,6 +127,7 @@ if __name__ == '__main__':
         save_path = './vis/data'
         for path in im_paths:
             pre_results = test_im(sess, net, path, vocab, pre_results)
+            print(pre_results)
 
-        with open(save_path + '/results.json', 'w') as f:
-            json.dump(pre_results, f)
+        #with open(save_path + '/results.json', 'w') as f:
+        #    json.dump(pre_results, f)
