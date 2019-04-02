@@ -68,7 +68,7 @@ def setup(alpha=0.5):
     return sess
 
 
-@densecap.command('caption', inputs={'image': 'image'}, outputs={'captions': 'vector', 'scores': 'vector'}) #, 'scores': 'vector', 'boxes': 'vector'})
+@densecap.command('caption', inputs={'image': 'image'}, outputs={'captions': 'vector', 'scores': 'vector', 'boxes': 'vector'})
 def caption(sess, inp):
     img = np.array(inp['image'])
     scores, boxes, captions = im_detect(sess, net, img, None, use_box_at=-1)
@@ -78,7 +78,7 @@ def caption(sess, inp):
     pos_scores = scores[keep]
     pos_captions = [sentence(vocab, captions[idx]) for idx in keep]
     pos_boxes = boxes[keep, :]
-    return dict(captions=np.array(pos_captions), scores=np.array([str(p) for p in pos_scores]))#, boxes=np.array(pos_boxes))
+    return dict(captions=np.array(pos_captions), scores=np.array(pos_scores), boxes=np.array(pos_boxes))
 
 
 if __name__ == '__main__':
