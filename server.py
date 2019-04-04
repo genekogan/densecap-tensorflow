@@ -32,14 +32,13 @@ from lib.nets.vgg16 import vgg16
 from lib.nets.resnet_v1 import resnetv1
 import pprint
 from lib.fast_rcnn.nms_wrapper import nms
-from runway import RunwayModel
+import runway
 
 
-densecap = RunwayModel()
 
 
-@densecap.setup
-def setup(alpha=0.5):
+@runway.setup(options={'checkpoint_path':runway.text})
+def setup(options):
     global net, vocab
     ckpt_dir = 'output/ckpt/'
     vocabulary = 'output/ckpt/vocabulary.txt'
@@ -68,7 +67,7 @@ def setup(alpha=0.5):
     return sess
 
 
-@densecap.command('caption', inputs={'image': 'image'}, outputs={'captions': 'vector', 'scores': 'vector', 'boxes': 'vector'})
+@runway.command('caption', inputs={'image': runway.image}, outputs={'captions': runway.vector(12), 'scores': runway.vector(12), 'boxes': runway.vector(12)})
 def caption(sess, inp):
     img = np.array(inp['image'])
     scores, boxes, captions = im_detect(sess, net, img, None, use_box_at=-1)
@@ -82,4 +81,4 @@ def caption(sess, inp):
 
 
 if __name__ == '__main__':
-    densecap.run()
+    runway.run()

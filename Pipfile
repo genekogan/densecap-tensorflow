@@ -21,7 +21,7 @@ Pillow = ">=2.3.0"
 setuptools = "*"
 visual-genome = "*"
 tokenizer = "*"
-runway-python = "*"
+runway-python = "==0.0.55"
 
 [requires]
 python_version = "3.5"
